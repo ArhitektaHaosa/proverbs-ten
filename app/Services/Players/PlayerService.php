@@ -15,11 +15,10 @@ class PlayerService
             return null;
         }
 
-        $hash = hash('sha256', $token);
-        return Player::where('token_hash', $hash)->first();
+        return Player::where('token_hash', hash('sha256', $token))->first();
     }
 
-    public function issue(Request $request): string
+    public function issue(): string
     {
         $token = Str::random(64);
         Player::create([
@@ -28,5 +27,12 @@ class PlayerService
         ]);
 
         return $token;
+    }
+
+    public function recoveryCode(Player $player): string
+    {
+        $code = Str::upper(Str::random(8));
+        $player->update(['recovery_code_hash' => hash('sha256', $code)]);
+        return $code; // show once
     }
 }
