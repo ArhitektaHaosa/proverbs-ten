@@ -1,0 +1,14 @@
+---
+description: Role playbooks (importer, ai-drafter, moderation, seo, quiz). Use when the task concerns importing, AI drafts, moderation/spam, SEO/caching/legal pages/analytics, or quiz/leaderboard.
+alwaysApply: false
+---
+
+When the task matches a role, read the matching file first and follow it:
+
+- importer: `docs/agents/importer.md`
+- ai-drafter: `docs/agents/ai-drafter.md`
+- moderation: `docs/agents/moderation.md`
+- seo: `docs/agents/seo.md`
+- quiz: `docs/agents/quiz.md`
+
+`AGENTS.md` always wins if a role file conflicts with it. Report the conflict.

@@ -1,0 +1,15 @@
+---
+description: proverbs-ten project rules. Always read AGENTS.md first.
+alwaysApply: true
+---
+
+The single source of truth for this project is `AGENTS.md` in the repository root. Read it fully before planning or editing, and follow it.
+
+Do not duplicate or override its rules here.
+
+Hard reminders:
+- English only for code, UI and docs.
+- Domain, site name and contact email come only from `.env` (`APP_URL`, `SITE_NAME`, `CONTACT_EMAIL`). Never hardcode them.
+- AI output is never public until the owner approves it.
+- Server has 2 GB RAM: chunk, queue, never load whole tables.
+- Before finishing run `composer test`, `vendor/bin/pint --test`, `scripts/check-domain-agnostic.sh`.
