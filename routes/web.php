@@ -5,8 +5,6 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\QuizController;
 use Illuminate\Support\Facades\Route;
 
-// Public GET routes: no session (register without StartSession).
-
 Route::get('/', fn () => view('home'))->name('home');
 Route::get('/proverb/{slug}', fn () => abort(404))->name('proverb.show');
 Route::get('/language/{code}', fn () => abort(404))->name('language.show');
@@ -35,8 +33,19 @@ Route::get('/contact', [PageController::class, 'show'])->defaults('page', 'conta
 
 Route::get('/token', fn () => response()->json(['csrf' => csrf_token()]))->name('token');
 
-// Forms (uncached)
 Route::post('/contribute', [ContributionController::class, 'store'])->name('contribute.store');
 Route::post('/quiz/start', [QuizController::class, 'start'])->name('quiz.start');
 Route::post('/quiz/submit', [QuizController::class, 'submit'])->name('quiz.submit');
 Route::post('/report', fn () => back())->name('report.store');
+
+Route::get('/ads.txt', function () {
+    if (! config('site.adsense_enabled')) {
+        abort(404);
+    }
+    return response(config('site.adsense_client'), 200, ['Content-Type' => 'text/plain']);
+});
+
+Route::get('/robots.txt', function () {
+    $disallow = config('site.indexable') ? '' : "Disallow: /\n";
+    return response("User-agent: *\n{$disallow}", 200, ['Content-Type' => 'text/plain']);
+});
