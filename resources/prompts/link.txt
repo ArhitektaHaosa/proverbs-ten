@@ -1,0 +1,3 @@
+Given a proverb and a list of candidate proverbs (by id), choose only from the candidates.
+Return JSON array of {candidate_id, type} where type is equivalent|close|opposite.
+If none fit, return []. Never invent new proverbs or ids.
