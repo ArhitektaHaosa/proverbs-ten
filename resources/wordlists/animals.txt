@@ -1,0 +1,8 @@
+Fox
+Owl
+Bear
+Wolf
+Deer
+Hawk
+Lynx
+Otter
